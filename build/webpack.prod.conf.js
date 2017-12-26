@@ -1,11 +1,15 @@
-var path = require('path')
-var webpack = require('webpack')
-var merge = require('webpack-merge')
-var HtmlWebpackPlugin = require('html-webpack-plugin')
-var webpackBaseConfig = require('./webpack.base.conf.js')
+ process.env.NODE_ENV = 'production'
+// process.env.NODE_ENV === 'production' ? '[name].[hash].bundle.js' : '[name].bundle.js'这样的条件语句，在 webpack 配置文件中，无法按照预期运行
+const path = require('path')
+const webpack = require('webpack')
+const merge = require('webpack-merge')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const webpackBaseConfig = require('./webpack.base.conf.js')
+const ExtractTextPlugin = require("extract-text-webpack-plugin")
 // var rimraf = require('rimraf')
 
-process.env.NODE_ENV = 'production'
+
+console.log(process.env.NODE_ENV)
 
 module.exports = merge(webpackBaseConfig, {
   entry: {
@@ -19,7 +23,7 @@ module.exports = merge(webpackBaseConfig, {
     path: path.resolve(__dirname, '../prod'),
     publicPath: './',
     filename: '[name].[chunkhash].js',
-    chunkFilename:'[name].chunk.js'
+    chunkFilename: '[name].chunk.js'
   },
   module: {
     rules: [{
@@ -31,6 +35,7 @@ module.exports = merge(webpackBaseConfig, {
     }]
   },
   plugins: [
+    new ExtractTextPlugin("style.[contenthash].css"),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       //filename: 'vendor.js'

@@ -9,7 +9,8 @@
     "clean": "rimraf prod",
     "dev": "webpack-dev-server --content-base test/ --open --inline --hot --compress --history-api-fallback --config build/webpack.dev.conf.js",
     "prod:build": "webpack --config build/webpack.prod.conf.js",
-    "build": "npm run clean && npm run prod:build"
+    "build": "npm run clean && npm run prod:build",
+    "build:install": "webpack --config build/webpack.prod.conf.install.js"
   },
   "dependencies": {
     "vue": "^2.5.2",
@@ -33,14 +34,14 @@
     "ip": "^1.1.5",
     "less": "^2.7.2",
     "less-loader": "^3.0.0",
-    "node-sass": "^4.5.3",
+    "node-sass": "^4.7.2",
     "rimraf": "^2.6.1",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.13.2",
     "vue-loader": "^13.3.0",
     "vue-style-loader": "^3.0.3",
     "vue-template-compiler": "^2.5.2",
-    "webpack": "^3.8.1",
+    "webpack": "^3.10.0",
     "webpack-dev-server": "^2.9.3",
     "webpack-merge": "^4.1.0"
   }
