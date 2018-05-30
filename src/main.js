@@ -6,8 +6,6 @@ import router from './router'
 
 Vue.config.productionTip = false
 
- Vue.use(loading)
-
 // import Loading from './components/load'
 
 // Vue.prototype.$Loading = Loading

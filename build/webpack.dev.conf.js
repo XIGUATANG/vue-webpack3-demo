@@ -11,6 +11,7 @@ var FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 var ip = require("ip")
 
 module.exports = merge(webpackBaseConfig, {
+    mode: 'development',
     // 入口
     entry: {
         main: './src/main.js',
@@ -44,19 +45,11 @@ module.exports = merge(webpackBaseConfig, {
     },
     devtool: '#source-map',
     plugins: [
-        new webpack.optimize.CommonsChunkPlugin({
-            name: 'vendor'
-        }),
         new HtmlWebpackPlugin({
             inject: true,
             filename: path.join(__dirname, '../prod/index.html'),
             template: path.join(__dirname, '../index.html')
         }),
         new FriendlyErrorsPlugin(),
-        new webpack.DefinePlugin({
-            'process.env': {
-                NODE_ENV: '"develop"'
-            }
-        }),
     ]
 });
